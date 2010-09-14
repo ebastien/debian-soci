@@ -1,0 +1,4 @@
+debian/tmp/usr/lib/libsoci_mysql*.a
+debian/tmp/usr/lib/libsoci_mysql*.la
+debian/tmp/usr/lib/libsoci_mysql*.so
+debian/tmp/usr/include/soci/backends/mysql

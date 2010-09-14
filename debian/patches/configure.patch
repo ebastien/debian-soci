@@ -1,0 +1,72 @@
+Description: Add support for Libtool verion info and rename shared libraries.
+Author: Emmanuel Bastien <bastien_emmanuel@yahoo.fr>
+--- a/configure.in
++++ b/configure.in
+@@ -16,7 +16,7 @@
+ dnl    and cpptk_interface_age to 0.
+ dnl -------------------------------------------------------------------
+ m4_define([soci_version_major], [3])
+-m4_define([soci_version_minor], [0])
++m4_define([soci_version_minor], [1])
+ m4_define([soci_version_micro], [0])
+ m4_define([soci_version],
+           [soci_version_major.soci_version_minor.soci_version_micro])
+@@ -75,7 +75,9 @@
+ dnl           [m4_eval(cpptk_binary_age - cpptk_interface_age)])
+ dnl 
+ dnl LIBTOOL_VERSION="lt_current:lt_revision:lt_age"
+-dnl AC_SUBST(LIBTOOL_VERSION)
++
++LIBTOOL_VERSION="0"
++AC_SUBST(LIBTOOL_VERSION)
+ 
+ 
+ dnl -------------------------------------------------------------------
+@@ -229,24 +231,14 @@
+ dnl Common library prefix
+ SOCI_LIBRARY_PREFIX="soci"
+ 
+-dnl Common library suffix
+-dnl
+-dnl TODO - mloskot: Add support of 's' and 'd' runtime modes.
+-dnl 
+-if test -z "${SOCI_LIBRARY_RUNTIME}"; then
+-    SOCI_LIBRARY_SUFFIX="${SOCI_LIBRARY_TOOLSET}-${SOCI_LIBRARY_VERSION}"
+-else
+-    SOCI_LIBRARY_SUFFIX="${SOCI_LIBRARY_TOOLSET}-${SOCI_LIBRARY_RUNTIME}-${SOCI_LIBRARY_VERSION}"
+-fi
+-
+-SOCI_CORE_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_core-${SOCI_LIBRARY_SUFFIX}"
+-SOCI_EMPTY_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_empty-${SOCI_LIBRARY_SUFFIX}"
+-SOCI_FIREBIRD_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_firebird-${SOCI_LIBRARY_SUFFIX}"
+-SOCI_MYSQL_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_mysql-${SOCI_LIBRARY_SUFFIX}"
+-SOCI_ORACLE_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_oracle-${SOCI_LIBRARY_SUFFIX}"
+-SOCI_ODBC_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_odbc-${SOCI_LIBRARY_SUFFIX}"
+-SOCI_POSTGRESQL_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_postgresql-${SOCI_LIBRARY_SUFFIX}"
+-SOCI_SQLITE3_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_sqlite3-${SOCI_LIBRARY_SUFFIX}"
++SOCI_CORE_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_core"
++SOCI_EMPTY_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_empty"
++SOCI_FIREBIRD_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_firebird"
++SOCI_MYSQL_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_mysql"
++SOCI_ORACLE_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_oracle"
++SOCI_ODBC_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_odbc"
++SOCI_POSTGRESQL_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_postgresql"
++SOCI_SQLITE3_LIBRARY_NAME="${SOCI_LIBRARY_PREFIX}_sqlite3"
+ 
+ AC_SUBST([SOCI_CORE_LIBRARY_NAME])
+ AC_SUBST([SOCI_EMPTY_LIBRARY_NAME])
+@@ -432,14 +424,8 @@
+     backends/Makefile
+     backends/empty/Makefile
+     backends/empty/test/Makefile
+-    backends/firebird/Makefile
+-    backends/firebird/test/Makefile
+     backends/mysql/Makefile
+     backends/mysql/test/Makefile
+-    backends/odbc/Makefile
+-    backends/odbc/test/Makefile
+-    backends/oracle/Makefile
+-    backends/oracle/test/Makefile
+     backends/postgresql/Makefile
+     backends/postgresql/test/Makefile
+     backends/sqlite3/Makefile

@@ -1,0 +1,120 @@
+Source: soci
+Section: libs
+Priority: optional
+Maintainer: Emmanuel Bastien <bastien_emmanuel@yahoo.fr>
+Build-Depends: cdbs, debhelper (>= 7.0.15), autotools-dev, autoconf, libtool, automake,
+               libstdc++6-4.4-dev | libstdc++-dev,
+               libboost-date-time1.42-dev | libboost-date-time-dev,
+               libmysqlclient-dev, libsqlite3-dev, libpq-dev
+Standards-Version: 3.8.4
+Homepage: http://soci.sourceforge.net/
+
+Package: libsoci-core-3.1.0-0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ Database Access Library (core)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the core shared library.
+
+Package: libsoci-mysql-3.1.0-0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ Database Access Library (MySQL backend)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the MySQL backend shared library.
+
+Package: libsoci-sqlite3-3.1.0-0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ Database Access Library (SQLite3 backend)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the SQLite3 backend shared library.
+
+Package: libsoci-postgresql-3.1.0-0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ Database Access Library (PostgreSQL backend)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the PostgreSQL backend shared library.
+
+Package: libsoci-core-3.1.0-0-dev
+Provides: libsoci-core-dev
+Conflicts: libsoci-core-dev
+Section: libdevel
+Architecture: any
+Depends: libsoci-core-3.1.0-0 (= ${binary:Version}),
+         libstdc++6-4.4-dev (>= 4.4.4),
+         libboost-date-time1.42-dev (>= 1.42.0),
+         ${misc:Depends}
+Suggests: libsoci-mysql-3.1.0-0-dev (= ${binary:Version}) |
+          libsoci-sqlite3-3.1.0-0-dev (= ${binary:Version}) |
+          libsoci-postgresql-3.1.0-0-dev (= ${binary:Version})
+Description: C++ Database Access Library (core devel)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the core development libraries and headers.
+
+Package: libsoci-mysql-3.1.0-0-dev
+Provides: libsoci-mysql-dev
+Conflicts: libsoci-mysql-dev
+Section: libdevel
+Architecture: any
+Depends: libsoci-core-3.1.0-0-dev (= ${binary:Version}),
+         libsoci-mysql-3.1.0-0 (= ${binary:Version}),
+         libmysqlclient-dev (>= 5.1.45),
+         ${misc:Depends}
+Description: C++ Database Access Library (MySQL devel)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the development libraries and headers
+ for the MySQL backend.
+
+Package: libsoci-sqlite3-3.1.0-0-dev
+Provides: libsoci-sqlite3-dev
+Conflicts: libsoci-sqlite3-dev
+Section: libdevel
+Architecture: any
+Depends: libsoci-core-3.1.0-0-dev (= ${binary:Version}),
+         libsoci-sqlite3-3.1.0-0 (= ${binary:Version}),
+         libsqlite3-dev (>= 3.6.23.1),
+         ${misc:Depends}
+Description: C++ Database Access Library (SQLite3 devel)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the development libraries and headers
+ for the SQLite3 backend.
+
+Package: libsoci-postgresql-3.1.0-0-dev
+Provides: libsoci-postgresql-dev
+Conflicts: libsoci-postgresql-dev
+Section: libdevel
+Architecture: any
+Depends: libsoci-core-3.1.0-0-dev (= ${binary:Version}),
+         libsoci-postgresql-3.1.0-0 (= ${binary:Version}),
+         libpq-dev (>= 8.4.3),
+         ${misc:Depends}
+Description: C++ Database Access Library (PostgreSQL devel)
+ Database access library for C++ that makes the illusion of
+ embedding SQL queries in the regular C++ code, staying entirely
+ within Standard C++.
+ .
+ This package provides the development libraries and headers
+ for the PostgreSQL backend.

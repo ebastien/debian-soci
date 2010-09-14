@@ -1,0 +1,46 @@
+Description: Add support for Libtool verion info.
+Author: Emmanuel Bastien <bastien_emmanuel@yahoo.fr>
+--- a/backends/mysql/Makefile.am
++++ b/backends/mysql/Makefile.am
+@@ -10,7 +10,7 @@
+ 	lib@SOCI_MYSQL_LIBRARY_NAME@.la
+ 
+ lib@SOCI_MYSQL_LIBRARY_NAME@_la_LDFLAGS = \
+-	-release @LIBTOOL_RELEASE@ -no-undefined @MYSQL_LDFLAGS@
++	-release @LIBTOOL_RELEASE@ -version-info @LIBTOOL_VERSION@ -no-undefined @MYSQL_LDFLAGS@
+ 
+ lib@SOCI_MYSQL_LIBRARY_NAME@_la_LIBADD = \
+ 	@top_builddir@/core/lib@SOCI_CORE_LIBRARY_NAME@.la
+--- a/core/Makefile.am
++++ b/core/Makefile.am
+@@ -11,7 +11,7 @@
+ lib_LTLIBRARIES	= lib@SOCI_CORE_LIBRARY_NAME@.la
+ 
+ lib@SOCI_CORE_LIBRARY_NAME@_la_LDFLAGS = \
+-	-release @LIBTOOL_RELEASE@ -no-undefined @LD_LIB@
++	-release @LIBTOOL_RELEASE@ -version-info @LIBTOOL_VERSION@ -no-undefined @LD_LIB@
+ 
+ lib@SOCI_CORE_LIBRARY_NAME@_la_SOURCES = \
+ 	backend-loader.cpp \
+--- a/backends/postgresql/Makefile.am
++++ b/backends/postgresql/Makefile.am
+@@ -10,7 +10,7 @@
+ 	lib@SOCI_POSTGRESQL_LIBRARY_NAME@.la
+ 
+ lib@SOCI_POSTGRESQL_LIBRARY_NAME@_la_LDFLAGS = \
+-	-release @LIBTOOL_RELEASE@ -no-undefined @POSTGRESQL_LDFLAGS@
++	-release @LIBTOOL_RELEASE@ -version-info @LIBTOOL_VERSION@ -no-undefined @POSTGRESQL_LDFLAGS@
+ 
+ lib@SOCI_POSTGRESQL_LIBRARY_NAME@_la_LIBADD = \
+ 	@top_builddir@/core/lib@SOCI_CORE_LIBRARY_NAME@.la
+--- a/backends/sqlite3/Makefile.am
++++ b/backends/sqlite3/Makefile.am
+@@ -10,7 +10,7 @@
+ 	lib@SOCI_SQLITE3_LIBRARY_NAME@.la
+ 
+ lib@SOCI_SQLITE3_LIBRARY_NAME@_la_LDFLAGS = \
+-	-release @LIBTOOL_RELEASE@ -no-undefined @SQLITE3_LDFLAGS@
++	-release @LIBTOOL_RELEASE@ -version-info @LIBTOOL_VERSION@ -no-undefined @SQLITE3_LDFLAGS@
+ 
+ lib@SOCI_SQLITE3_LIBRARY_NAME@_la_LIBADD = \
+ 	@top_builddir@/core/lib@SOCI_CORE_LIBRARY_NAME@.la

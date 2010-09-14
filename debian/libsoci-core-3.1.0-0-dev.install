@@ -1,0 +1,4 @@
+debian/tmp/usr/lib/libsoci_core*.a
+debian/tmp/usr/lib/libsoci_core*.la
+debian/tmp/usr/lib/libsoci_core*.so
+debian/tmp/usr/include/soci/core

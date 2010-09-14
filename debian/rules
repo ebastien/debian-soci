@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/makefile.mk
+include /usr/share/cdbs/1/class/autotools.mk
+
+DEB_CONFIGURE_EXTRA_FLAGS = \
+ --enable-backend-mysql=yes \
+ --enable-backend-postgresql=yes \
+ --enable-backend-sqlite3=yes
+
+DEB_DH_MAKESHLIBS_ARGS_libsoci-core-3.1.0-0 = -V
+
+DEB_PHONY_RULES += force-autogen
+
+cleanbuilddir:: force-autogen
+
+force-autogen::
+	./autogen.sh

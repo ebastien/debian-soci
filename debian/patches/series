@@ -1,0 +1,5 @@
+configure.patch
+makefiles-libtool-version.patch
+autogen-m4-path.patch
+include-path-scheme.patch
+missing-cstring-include.path

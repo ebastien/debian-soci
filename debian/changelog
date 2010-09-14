@@ -1,0 +1,7 @@
+soci (3.1.0~git20100430-2) unstable; urgency=low
+
+  * Initial release
+
+  * Add build deps for autotools
+
+ -- Emmanuel Bastien <bastien_emmanuel@yahoo.fr>  Mon, 03 May 2010 17:23:38 +0200

@@ -1,0 +1,277 @@
+Description: Fix path to core headers from backend source.
+Author: Emmanuel Bastien <bastien_emmanuel@yahoo.fr>
+--- a/backends/empty/soci-empty.h
++++ b/backends/empty/soci-empty.h
+@@ -23,7 +23,7 @@
+ # define SOCI_EMPTY_DECL
+ #endif
+ 
+-#include "soci-backend.h"
++#include "../../core/soci-backend.h"
+ 
+ namespace soci
+ {
+--- a/backends/mysql/common.cpp
++++ b/backends/mysql/common.cpp
+@@ -6,7 +6,7 @@
+ //
+ 
+ #include "common.h"
+-#include "soci-backend.h"
++#include "../../core/soci-backend.h"
+ #include <ciso646>
+ #include <cstdlib>
+ #include <cstring>
+--- a/backends/mysql/soci-mysql.h
++++ b/backends/mysql/soci-mysql.h
+@@ -24,7 +24,7 @@
+ # define SOCI_MYSQL_DECL
+ #endif
+ 
+-#include "soci-backend.h"
++#include "../../core/soci-backend.h"
+ #ifdef _WIN32
+ #include <winsock.h> // SOCKET
+ #endif // _WIN32
+--- a/backends/sqlite3/common.cpp
++++ b/backends/sqlite3/common.cpp
+@@ -6,7 +6,7 @@
+ //
+ 
+ #include "common.h"
+-#include "soci-backend.h"
++#include "../../core/soci-backend.h"
+ // std
+ #include <cstdlib>
+ #include <ctime>
+--- a/backends/sqlite3/soci-sqlite3.h
++++ b/backends/sqlite3/soci-sqlite3.h
+@@ -24,7 +24,7 @@
+ #endif
+ 
+ #include <vector>
+-#include "soci-backend.h"
++#include "../../core/soci-backend.h"
+ 
+ // Disable flood of nonsense warnings generated for SQLite
+ #ifdef _MSC_VER
+--- a/backends/mysql/Makefile.am
++++ b/backends/mysql/Makefile.am
+@@ -2,7 +2,6 @@
+ # 
+ # Author: Mateusz Loskot <mateusz@loskot.net>
+ #
+-INCLUDES = -I$(top_srcdir)/core
+ AM_CXXFLAGS = -fPIC
+ AM_CPPFLAGS = @MYSQL_CFLAGS@
+ 
+@@ -27,7 +26,7 @@
+ 	vector-into-type.cpp \
+ 	vector-use-type.cpp
+ 
+-soci_mysqldir = $(includedir)/soci/mysql
++soci_mysqldir = $(includedir)/soci/backends/mysql
+ 
+ soci_mysql_HEADERS = \
+ 	common.h \
+--- a/backends/sqlite3/Makefile.am
++++ b/backends/sqlite3/Makefile.am
+@@ -2,7 +2,6 @@
+ # 
+ # Author: Mateusz Loskot <mateusz@loskot.net>
+ #
+-INCLUDES = -I$(top_srcdir)/core
+ AM_CXXFLAGS = -fPIC
+ AM_CPPFLAGS = @SQLITE3_CFLAGS@
+ 
+@@ -27,7 +26,7 @@
+ 	vector-into-type.cpp \
+ 	vector-use-type.cpp
+ 
+-soci_sqlite3dir = $(includedir)/soci/sqlite3
++soci_sqlite3dir = $(includedir)/soci/backends/sqlite3
+ 
+ soci_sqlite3_HEADERS = \
+ 	common.h \
+--- a/core/Makefile.am
++++ b/core/Makefile.am
+@@ -33,7 +33,7 @@
+ 	use-type.cpp \
+ 	values.cpp
+ 
+-socidir = $(includedir)/soci
++socidir = $(includedir)/soci/core
+ 
+ soci_HEADERS = \
+ 	backend-loader.h \
+--- a/backends/mysql/standard-into-type.cpp
++++ b/backends/mysql/standard-into-type.cpp
+@@ -8,7 +8,7 @@
+ 
+ #define SOCI_MYSQL_SOURCE
+ #include "soci-mysql.h"
+-#include <soci-platform.h>
++#include "../../core/soci-platform.h"
+ #include "common.h"
+ // std
+ #include <ciso646>
+--- a/backends/mysql/standard-use-type.cpp
++++ b/backends/mysql/standard-use-type.cpp
+@@ -9,7 +9,7 @@
+ #define SOCI_MYSQL_SOURCE
+ #include "soci-mysql.h"
+ #include "common.h"
+-#include <soci-platform.h>
++#include "../../core/soci-platform.h"
+ #include <ciso646>
+ #include <limits>
+ #include <cstring>
+--- a/backends/mysql/vector-into-type.cpp
++++ b/backends/mysql/vector-into-type.cpp
+@@ -9,7 +9,7 @@
+ #define SOCI_MYSQL_SOURCE
+ #include "soci-mysql.h"
+ #include "common.h"
+-#include <soci-platform.h>
++#include "../../core/soci-platform.h"
+ #include <ciso646>
+ 
+ #ifdef _MSC_VER
+--- a/backends/mysql/vector-use-type.cpp
++++ b/backends/mysql/vector-use-type.cpp
+@@ -9,7 +9,7 @@
+ #define SOCI_MYSQL_SOURCE
+ #include "soci-mysql.h"
+ #include "common.h"
+-#include <soci-platform.h>
++#include "../../core/soci-platform.h"
+ // std
+ #include <ciso646>
+ #include <cstring>
+--- a/backends/postgresql/common.cpp
++++ b/backends/postgresql/common.cpp
+@@ -6,7 +6,7 @@
+ //
+ 
+ #include "common.h"
+-#include <soci-backend.h>
++#include "../../core/soci-backend.h"
+ #include <cstdlib>
+ #include <ctime>
+ 
+--- a/backends/postgresql/soci-postgresql.h
++++ b/backends/postgresql/soci-postgresql.h
+@@ -23,7 +23,7 @@
+ # define SOCI_POSTGRESQL_DECL
+ #endif
+ 
+-#include <soci-backend.h>
++#include "../../core/soci-backend.h"
+ #include <libpq-fe.h>
+ #include <vector>
+ 
+--- a/backends/sqlite3/standard-into-type.cpp
++++ b/backends/sqlite3/standard-into-type.cpp
+@@ -5,11 +5,11 @@
+ // http://www.boost.org/LICENSE_1_0.txt)
+ //
+ 
+-#include <soci-platform.h>
++#include "../../core/soci-platform.h"
+ #include "soci-sqlite3.h"
+-#include "rowid.h"
++#include "../../core/rowid.h"
+ #include "common.h"
+-#include "blob.h"
++#include "../../core/blob.h"
+ // std
+ #include <cstdlib>
+ #include <ctime>
+--- a/backends/sqlite3/vector-into-type.cpp
++++ b/backends/sqlite3/vector-into-type.cpp
+@@ -5,7 +5,7 @@
+ // http://www.boost.org/LICENSE_1_0.txt)
+ //
+ 
+-#include <soci-platform.h>
++#include "../../core/soci-platform.h"
+ #include "soci-sqlite3.h"
+ #include "common.h"
+ // std
+--- a/backends/empty/Makefile.am
++++ b/backends/empty/Makefile.am
+@@ -4,7 +4,6 @@
+ #
+ # Author: Mateusz Loskot <mateusz@loskot.net>
+ #
+-INCLUDES = -I$(top_srcdir)/core
+ AM_CXXFLAGS = -fPIC
+ 
+ noinst_LTLIBRARIES	= \
+@@ -24,7 +23,7 @@
+ 	vector-into-type.cpp \
+ 	vector-use-type.cpp
+ 
+-soci_emptydir = $(includedir)/soci/empty
++soci_emptydir = $(includedir)/soci/backends/empty
+ 
+ soci_empty_HEADERS = \
+ 	soci-empty.h
+--- a/backends/postgresql/Makefile.am
++++ b/backends/postgresql/Makefile.am
+@@ -2,7 +2,6 @@
+ # 
+ # Author: Mateusz Loskot <mateusz@loskot.net>
+ #
+-INCLUDES = -I$(top_srcdir)/core
+ AM_CXXFLAGS = -fPIC
+ AM_CPPFLAGS = @POSTGRESQL_CFLAGS@
+ 
+@@ -27,7 +26,7 @@
+ 	vector-into-type.cpp \
+ 	vector-use-type.cpp
+ 
+-soci_postgresqldir = $(includedir)/soci/postgresql
++soci_postgresqldir = $(includedir)/soci/backends/postgresql
+ 
+ soci_postgresql_HEADERS = \
+ 	common.h \
+--- a/backends/postgresql/standard-into-type.cpp
++++ b/backends/postgresql/standard-into-type.cpp
+@@ -8,8 +8,8 @@
+ #define SOCI_POSTGRESQL_SOURCE
+ #include "soci-postgresql.h"
+ #include "common.h"
+-#include "rowid.h"
+-#include "blob.h"
++#include "../../core/rowid.h"
++#include "../../core/blob.h"
+ #include <libpq/libpq-fs.h> // libpq
+ #include <cctype>
+ #include <cstdio>
+--- a/backends/postgresql/standard-use-type.cpp
++++ b/backends/postgresql/standard-use-type.cpp
+@@ -7,8 +7,8 @@
+ 
+ #define SOCI_POSTGRESQL_SOURCE
+ #include "soci-postgresql.h"
+-#include "blob.h"
+-#include "rowid.h"
++#include "../../core/blob.h"
++#include "../../core/rowid.h"
+ #include <libpq/libpq-fs.h> // libpq
+ #include <cctype>
+ #include <cstdio>
+--- a/backends/sqlite3/standard-use-type.cpp
++++ b/backends/sqlite3/standard-use-type.cpp
+@@ -7,8 +7,8 @@
+ 
+ 
+ #include "soci-sqlite3.h"
+-#include "rowid.h"
+-#include "blob.h"
++#include "../../core/rowid.h"
++#include "../../core/blob.h"
+ // std
+ #include <cstring>
+ #include <ctime>

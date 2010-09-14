@@ -1,0 +1,22 @@
+Description: Add missing cstring header in test source code.
+Author: Emmanuel Bastien <bastien_emmanuel@yahoo.fr>
+--- a/backends/postgresql/test/test-postgresql.cpp
++++ b/backends/postgresql/test/test-postgresql.cpp
+@@ -16,6 +16,7 @@
+ #include <cstring>
+ #include <ctime>
+ #include <cstdlib>
++#include <cstring>
+ 
+ using namespace soci;
+ using namespace soci::tests;
+--- a/backends/sqlite3/test/test-sqlite3.cpp
++++ b/backends/sqlite3/test/test-sqlite3.cpp
+@@ -14,6 +14,7 @@
+ #include <cassert>
+ #include <cmath>
+ #include <ctime>
++#include <cstring>
+ 
+ using namespace soci;
+ using namespace soci::tests;

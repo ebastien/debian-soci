@@ -1,0 +1,2 @@
+libsoci-mysql-3.1.0-0: new-package-should-close-itp-bug
+libsoci-mysql-3.1.0-0: no-symbols-control-file usr/lib/libsoci_mysql-3.1.0.so.0.0.0

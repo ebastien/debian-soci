@@ -1,0 +1,13 @@
+Description: Fix the path to the M4 directory in the distribution archive.
+Author: Emmanuel Bastien <bastien_emmanuel@yahoo.fr>
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -55,7 +55,7 @@
+ fi
+ 
+ echo "Running aclocal..."
+-aclocal -I ../build/m4
++aclocal -I m4
+ echo "Running libtoolize..."
+ $LIBTOOLIZE --force --copy
+ echo "Running automake..."
