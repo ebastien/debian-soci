@@ -1,0 +1,5 @@
+*.deb
+*.dsc
+*.changes
+*.debian.tar.gz
+soci-*/
